@@ -1,14 +1,42 @@
 //budget controller
 var budgetController = (function () {
-  var x = 23;
-  // private add function
-  var add = function (a) {
-    return x + a;
+  var Expense = function (id, description, value) {
+    this.id = id;
+    this.description = description;
+    this.value = value;
+  };
+
+  var Income = function (id, description, value) {
+    this.id = id;
+    this.description = description;
+    this.value = value;
+  };
+
+  var data = {
+    allItems: {
+      exp: [],
+      inc: [],
+    },
+    totals: {
+      exp: 0,
+      inc: 0,
+    },
   };
 
   return {
-    publicTest: function (b) {
-      return b;
+    addItem: function (type, des, val) {
+      var newItem;
+      ID = 0;
+      if (type === "exp") {
+        newItem = new Expense(ID, des, val);
+      } else {
+        newItem = new Income(ID, des, value);
+      }
+
+      data.allItems[type].push(newItem);
+    },
+    getExpenses: function () {
+      return data.allItems.exp;
     },
   };
 })();
